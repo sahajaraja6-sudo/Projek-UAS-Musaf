@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikhwan Store - Premium Men's Outfit</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-DUMMY-12345"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-DUMMY-12345');
+    </script>
+
+    <style>
+        /* Reset & Variabel Warna Brand */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #1a202c;
+            --primary-hover: #4a5568;
+            --accent-color: #dd6b20;
+            --dark-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --star-color: #ffb800;
+            --success-color: #38a169;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar Layout dengan Flexbox */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--dark-color);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Container khusus untuk membungkus Logo & Keranjang di Mobile */
+        .brand-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .filter-select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: none;
+            background-color: var(--white);
+            cursor: pointer;
+        }
+
+        /* Navigasi Media Sosial */
+        .social-nav {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .social-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+        }
+
+        .cart-icon-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.1rem;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .cart-count {
+            background-color: var(--accent-color);
+            color: var(--white);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://plus.unsplash.com/premium_photo-1725075088969-73798c9b422c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdhbnR1bmdhbiUyMGJhanUlMjBwcmlhfGVufDB8fDB8fHww') no-repeat center center/cover;
+            height: 45vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Main Container & Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .section-title {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        /* Katalog Produk dengan CSS Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .product-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark-color);
+        }
+
+        /* Styling Rating Bintang */
+        .rating-box {
+            color: var(--star-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .rating-count {
+            color: #718096;
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+
+        .product-card .price {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Bagian Keranjang & Checkout */
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cart-summary, .checkout-form-section {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .cart-item-info .item-meta {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 0.2rem;
+        }
+
+        .cart-item-controls input {
+            width: 60px;
+            padding: 0.25rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .btn-danger {
+            background-color: #e53e3e;
+        }
+
+        .total-price-box {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Formulir Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* Rating & Testimoni Pelanggan */
+        .testimonials-section {
+            background-color: var(--white);
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #718096;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-stars {
+            color: var(--star-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: #4a5568;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+        }
+
+        .testimonial-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #cbd5e0;
+        }
+
+        .testimonial-info h4 {
+            font-size: 0.95rem;
+            color: var(--dark-color);
+        }
+
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: #718096;
+        }
+
+        /* Modal Basis Setup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        /* Tata Letak Split Kiri-Kanan Di Dalam Modal Konten */
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 12px;
+            max-width: 850px;
+            width: 90%;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .modal-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-left img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .modal-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: color 0.2s;
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+
+        /* Atribut: Stok, Ukuran & Jumlah */
+        .product-meta-info {
+            display: flex;
+            gap: 1.5rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .meta-stock {
+            color: var(--success-color);
+            font-weight: 600;
+            background-color: #e6fffa;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .size-selector-box, .quantity-selector-box {
+            margin: 0.8rem 0;
+        }
+
+        .size-selector-box p, .quantity-selector-box p {
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .size-btn {
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-btn:hover {
+            border-color: var(--primary-color);
+        }
+
+        .size-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        /* Input Jumlah di Modal */
+        .qty-input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background-color: var(--light-bg);
+        }
+
+        .modal-qty-number {
+            width: 50px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        /* Responsif Modal saat Layar HP Kecil (Tumpuk Atas-Bawah) */
+        @media (max-width: 768px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            .modal-left img {
+                height: 250px;
+            }
+            .modal-right {
+                text-align: center;
+            }
+            .product-meta-info {
+                justify-content: center;
+            }
+            .size-options, .qty-input-group {
+                justify-content: center;
+            }
+        }
+
+        /* UI Modal Animasi Validasi Sukses */
+        .success-modal-content {
+            background-color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-icon-box {
+            width: 80px;
+            height: 80px;
+            background-color: #e6fffa;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem auto;
+            position: relative;
+        }
+
+        .checkmark-stem {
+            width: 6px;
+            height: 30px;
+            background-color: var(--success-color);
+            position: absolute;
+            left: 42px;
+            top: 22px;
+            transform: rotate(45deg);
+            border-radius: 3px;
+            animation: growStem 0.2s ease-out 0.3s both;
+        }
+
+        .checkmark-kick {
+            width: 16px;
+            height: 6px;
+            background-color: var(--success-color);
+            position: absolute;
+            left: 26px;
+            top: 42px;
+            transform: rotate(45deg);
+            border-radius: 3px;
+            animation: growKick 0.2s ease-out 0.1s both;
+        }
+
+        @keyframes growKick {
+            0% { width: 0; }
+            100% { width: 16px; }
+        }
+
+        @keyframes growStem {
+            0% { height: 0; }
+            100% { height: 30px; }
+        }
+
+        .success-title {
+            font-size: 1.6rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .success-message {
+            font-size: 0.95rem;
+            color: #718096;
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 2.5rem 5% 1.5rem 5%;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #cbd5e0;
+            line-height: 1.6;
+            list-style: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #4a5568;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        /* RESPONSIVITAS MEDIA QUERIES (Sesuai WhatsApp Image 2026-07-05 at 07.35.09.jpeg) */
+        @media (max-width: 992px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .brand-wrapper {
+                width: 100%;
+            }
+            .nav-controls {
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            .search-box, .filter-select {
+                flex: 1;
+                min-width: 140px;
+            }
+            .social-nav {
+                width: 100%;
+                justify-content: center;
+                margin-top: 0.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            /* Hilangkan teks kata "Keranjang" di mobile, sisakan logo emoji saja */
+            .cart-text {
+                display: none;
+            }
+            .cart-icon-btn {
+                font-size: 1.4rem; /* Perbesar icon 🛒 agar nyaman ditekan di HP */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <!-- Wrapper Khusus Penyelaras Posisi di HP -->
+        <div class="brand-wrapper">
+            <a href="#" class="logo" onclick="showPage('home')">IKHWAN STORE</a>
+            
+            <!-- BUTTON KERANJANG DI SEBELAH LOGO (Hanya muncul bersebelahan di layar HP/Tablet) -->
+            <script>
+                // Pindahkan tombol keranjang ke dalam wrapper logo jika layar HP
+                function adjustCartPosition() {
+                    const cartBtn = document.getElementById('main-cart-btn');
+                    const brandWrapper = document.querySelector('.brand-wrapper');
+                    const navControls = document.querySelector('.nav-controls');
+                    
+                    if (window.innerWidth <= 992) {
+                        if (!brandWrapper.contains(cartBtn)) {
+                            brandWrapper.appendChild(cartBtn);
+                        }
+                    } else {
+                        if (!navControls.contains(cartBtn)) {
+                            navControls.appendChild(cartBtn);
+                        }
+                    }
+                }
+                window.addEventListener('resize', adjustCartPosition);
+                window.addEventListener('DOMContentLoaded', adjustCartPosition);
+            </script>
+        </div>
+
+        <div class="nav-controls">
+            <input type="text" id="search-input" class="search-box" placeholder="Cari pakaian pria...">
+            <select id="category-filter" class="filter-select">
+                <option value="all">Semua Koleksi</option>
+                <option value="atasan">Atasan (T-Shirt & Kemeja)</option>
+                <option value="outerwear">Outerwear (Blazer & Jaket)</option>
+            </select>
+            
+            <!-- ID Ditambahkan untuk manipulasi pemindahan posisi via JS -->
+            <button id="main-cart-btn" class="cart-icon-btn" onclick="showPage('checkout')">
+                🛒 <span class="cart-text"></span> <span id="cart-count" class="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Halaman Utama (Home) -->
+    <div id="home-page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Koleksi Outfit pria</h1>
+                <p>Temukan oversize style, outerwear premium, dan tren fashion modern terbaik.</p>
+            </div>
+        </section>
+
+        <main class="container" id="katalog-section">
+            <h2 class="section-title">Katalog Outfit Pria Resmi</h2>
+            <div class="product-grid" id="product-list">
+                <!-- Produk di-render via JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Halaman Checkout -->
+    <div id="checkout-page" class="container" style="display: none;">
+        <h2 class="section-title">Keranjang Belanja & Checkout</h2>
+        <button class="btn" onclick="showPage('home')" style="margin-bottom: 1rem;">← Kembali </button>
+        
+        <div class="checkout-container">
+            <div class="cart-summary">
+                <h3>Daftar Belanja Anda</h3>
+                <div id="cart-items-container"></div>
+                <div class="total-price-box">
+                    Total: <span id="cart-total-price">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="checkout-form-section">
+                <h3>Formulir Data & Pembayaran</h3>
+                <form id="checkout-form" onsubmit="processCheckout(event)">
+                    <div class="form-group">
+                        <label for="buyer-name">Nama Lengkap *</label>
+                        <input type="text" id="buyer-name" required placeholder="Contoh: Musaf Sehkul Ikhwan">
+                    </div>
+                    <div class="form-group">
+                        <label for="buyer-email">Email Aktif *</label>
+                        <input type="email" id="buyer-email" required placeholder="musaf@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="buyer-address">Alamat Pengiriman Lengkap *</label>
+                        <textarea id="buyer-address" rows="3" required placeholder="Nama jalan, nomor rumah, RT/RW, kecamatan, kota..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-method">Metode Pembayaran *</label>
+                        <select id="payment-method" required>
+                            <option value="">-- Pilih Pembayaran --</option>
+                            <option value="cod">COD (Bayar di Tempat)</option>
+                            <option value="midtrans-qris">Midtrans: QRIS Otomatis</option>
+                            <option value="midtrans-va">Midtrans: Virtual Account (BCA/Mandiri)</option>
+                            <option value="paypal">PayPal Dummy Sandbox</option>
+                            <option value="Dana">DANA</option>
+                            <option value="OVO">OVO</option>
+                            <option value="Go Pay">GoPay</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Proses Bayar Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seksi Testimoni -->
+    <section class="testimonials-section">
+        <h3 class="testimonials-title">Ulasan Pelanggan</h3>
+        <h2 class="section-title" style="margin-bottom: 2rem; font-size: 1.8rem;">What They Say About Our Outfit?</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Gila sih Heavyweight Oversized T-Shirt-nya! Bahannya tebal banget tapi tidak bikin gerah, potongan drop shoulder-nya pas banget di badan saya mirip Japanese street style."</p>
+                <div class="testimonial-user">
+                    <img src="https://images.unsplash.com/photo-1719603785926-84d214438120?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG90byUyMHByb2ZpbHxlbnwwfHwwfHx8MA%3D%3D" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>Sandi Abdul</h4>
+                        <p>Streetwear Enthusiast</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Nyari Structured Tech Blazer yang pas di badan itu susah, tapi produk Ikhwan Store ini langsung nge-fit sempurna. Bahannya premium anti kusut, sangat rapi jahitannya."</p>
+                <div class="testimonial-user">
+                    <img src="https://images.unsplash.com/photo-1559420836-dbfae8f85e53?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG90byUyMHByb2ZpbHxlbnwwfHwwfHx8MA%3D%3D" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>Rizki Ahmad</h4>
+                        <p>Content Creator</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Kemeja linen shanghai dan jaket korduroinya cakep parah buat layering style. Pengiriman cepat banget dan adminnya super ramah pas nanya rekomendasi ukuran."</p>
+                <div class="testimonial-user">
+                    <img src="https://images.unsplash.com/photo-1630317130416-911a6fd203ad?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBvdG8lMjBwcm9maWx8ZW58MHx8MHx8fDA%3D" alt="Avatar" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>Fauzan Nabawi</h4>
+                        <p>Model Kasual</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DETAIL PRODUK -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-left">
+                <img id="modal-img" src="" alt="Detail Pro">
+            </div>
+            <div class="modal-right">
+                <h3 id="modal-name" style="font-size: 1.6rem; margin-bottom: 0.3rem; color: var(--dark-color);"></h3>
+                <div class="rating-box" id="modal-rating" style="justify-content: flex-start; margin-bottom: 0.6rem;"></div>
+                <p id="modal-price" style="color: var(--accent-color); font-weight:bold; margin-bottom: 0.8rem; font-size: 1.4rem;"></p>
+                
+                <div class="product-meta-info">
+                    <span>Status: <span class="meta-stock">Tersedia (<span id="modal-stock">0</span> pcs)</span></span>
+                </div>
+
+                <div class="size-selector-box">
+                    <p>Pilih Ukuran:</p>
+                    <div class="size-options">
+                        <button class="size-btn active" onclick="selectSize(this)">S</button>
+                        <button class="size-btn" onclick="selectSize(this)">M</button>
+                        <button class="size-btn" onclick="selectSize(this)">L</button>
+                        <button class="size-btn" onclick="selectSize(this)">XL</button>
+                        <button class="size-btn" onclick="selectSize(this)">XXL</button>
+                    </div>
+                </div>
+
+                <div class="quantity-selector-box">
+                    <p>Jumlah Pembelian:</p>
+                    <div class="qty-input-group">
+                        <button class="qty-btn" onclick="adjustModalQty(-1)">-</button>
+                        <input type="number" id="modal-qty" class="modal-qty-number" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="adjustModalQty(1)">+</button>
+                    </div>
+                </div>
+
+                <p id="modal-desc" style="font-size:0.95rem; color:#4a5568; margin-bottom: 1.5rem; text-align:justify; line-height: 1.5;"></p>
+                <button id="modal-add-btn" class="btn" style="width:100%; padding: 0.9rem;">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ANIMASI VALIDASI (NOTIFIKASI BERHASIL) -->
+    <div id="success-modal" class="modal">
+        <div class="success-modal-content">
+            <div class="success-icon-box">
+                <div class="checkmark-kick"></div>
+                <div class="checkmark-stem"></div>
+            </div>
+            <h2 class="success-title" id="success-title">Berhasil!</h2>
+            <p class="success-message" id="success-modal-msg"></p>
+            <button class="btn" id="success-action-btn" onclick="closeSuccessModal()" style="width: 100%;">Selesai & Lanjut</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Tentang Ikhwan Store</h4>
+                <p>Ikhwan Store menyediakan fashion streetwear pria premium dengan potongan oversized dan Japanese urban style pilihan untuk performa kasual maupun formal Anda.</p>
+            </div>
+           <!-- Pastikan link Font Awesome ini sudah ada di dalam tag <head> HTML Anda -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="footer-section">
+    <h4>Sosial Media Kami</h4>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+        <!-- Instagram -->
+        <li style="margin-bottom: 12px;">
+            <a href="https://www.instagram.com/musafsehkul?igsh=MWNjMzQyeTNpemdoMA==" target="_blank" style="color: #cbd5e0; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: color 0.2s;">
+                <i class="fab fa-instagram" style="color: #e1306c; font-size: 1.2rem; width: 20px;"></i>
+                <span>Instagram (@musafsehkulikhwan)</span>
+            </a>
+        </li>
+        
+        <!-- TikTok -->
+        <li style="margin-bottom: 12px;">
+            <a href="https://vt.tiktok.com/ZSCgShQ52/" target="_blank" style="color: #cbd5e0; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: color 0.2s;">
+                <i class="fab fa-tiktok" style="color: #010101; background: #fff; border-radius: 4px; padding: 1px; font-size: 1.1rem; width: 20px; text-align: center;"></i>
+                <span>TikTok (@Ikhwan)</span>
+            </a>
+        </li>
+        
+        <!-- YouTube -->
+        <li style="margin-bottom: 12px;">
+            <a href="https://youtube.com/@musafsehkulikhwan?si=mfHZdoDRw_YVxq2o" target="_blank" style="color: #cbd5e0; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: color 0.2s;">
+                <i class="fab fa-youtube" style="color: #ff0000; font-size: 1.2rem; width: 20px;"></i>
+                <span>YouTube Channel (Ikhwan)</span>
+            </a>
+        </li>
+    </ul>
+</div>
+          <!-- Tambahkan link Font Awesome ini di dalam tag <head> Anda jika belum ada -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="footer-section">
+    <h4>Kontak & Hubungi</h4>
+    
+    <!-- Bagian Alamat & Kontak dengan Ikon -->
+    <div class="contact-info" style="margin-bottom: 20px;">
+        <p style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+            <i class="fas fa-map-marker-alt" style="color: #e53e3e; margin-top: 4px; width: 16px;"></i>
+            <span>Gedung Ikhwan Store Lt. 2<br>Cisarua, Jawa Barat, Indonesia</span>
+        </p>
+        <p style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <i class="fas fa-envelope" style="color: #3182ce; width: 16px;"></i>
+            <a href="mailto:musafsehkulikhwan05@gmail.com" style="color: inherit; text-decoration: none;">musafsehkulikhwan05@gmail.com</a>
+        </p>
+        <p style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <i class="fas fa-phone-alt" style="color: #38a169; width: 16px;"></i>
+            <span>+62 856-0170-7514</span>
+        </p>
+    </div>
+
+    <!-- PERUBAHAN: Highlight Jam Operasional & Gratis Ongkir (Dibuat seperti Badge/Card Kecil) -->
+    <div class="promo-highlight" style="background: rgba(246, 173, 85, 0.1); border-left: 4px solid #f6ad55; padding: 12px 15px; border-radius: 4px; margin-top: 15px;">
+        <p style="margin: 0 0 8px 0; color: #f6ad55; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-clock"></i> Jam Operasional: 08:00 - 21:00 WIB
+        </p>
+        <p style="margin: 0; color: #fff; background: #f6ad55; color: #1a202c; padding: 6px 10px; border-radius: 4px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9em; letter-spacing: 0.5px;">
+            <i class="fas fa-rocket"></i> GRATIS ONGKIR SE-BANDUNG RAYA
+        </p>
+    </div>
+</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ikhwan Store Prototype Corp. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Oversized Heavyweight T-Shirt Black", price: 149000, category: "atasan", img: "https://images.unsplash.com/photo-1778759335271-91d85dacaf96?w=600&auto=format&fit=crop&q=60", rating: 4.8, reviews: 142, stock: 45, desc: "Kaos oversized polos berwarna hitam minimalis berbahan Cotton Combed 24s Heavyweight premium. Tebal, tidak kaku, potongan drop shoulder sempurna ala Japanese streetwear, serta sangat nyaman dipakai seharian." },
+            { id: 2, name: "Japanese Street Oversized Blazer Grey", price: 389000, category: "outerwear", img: "https://plus.unsplash.com/premium_photo-1727976490117-60812fd55bc9?w=600&auto=format&fit=crop&q=60", rating: 4.9, reviews: 85, stock: 12, desc: "Relaxed blazer berwarna abu-abu dengan potongan oversized khas Harajuku fashion. Menggunakan bahan semi-wool premium bertekstur lembut dan berfuring dalam, sangat pas dipadukan dengan kaos urban casual." },
+            { id: 3, name: "Kemeja Flanel Kasual Kotak-Kotak", price: 195000, category: "atasan", img: "https://images.unsplash.com/photo-1742346688038-b93bc6dc8bda?w=600&auto=format&fit=crop&q=60", rating: 4.7, reviews: 210, stock: 28, desc: "Kemeja flanel premium lengan panjang dengan motif kotak terkurasi warna gelap maskulin. Berbahan katun flanel lembut yang disikat khusus, memberikan look vintage sekaligus sirkulasi udara yang baik." },
+            { id: 4, name: "Casual Structured Tech Blazer Black", price: 420000, category: "outerwear", img: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600&auto=format&fit=crop&q=60", rating: 5.0, reviews: 64, stock: 8, desc: "Blazer terstruktur hitam pekat modern bermaterial anti kusut tech-fabric yang ringan. Menampilkan siluet gagah dan dinamis, sangat cocok dipakai untuk kebutuhan bisnis santai atau smart-casual acara formal." },
+            { id: 5, name: "Kemeja Linen Kerah Shanghai White", price: 175000, category: "atasan", img: "https://images.unsplash.com/photo-1611618741935-ca6b34e1e89d?w=600&auto=format&fit=crop&q=60", rating: 4.6, reviews: 118, stock: 50, desc: "Kemeja linen murni berwarna putih bersih dengan potongan kerah Shanghai minimalis. Karakteristik anyaman serat kain linen yang berongga membuatnya sangat sejuk, menyerap keringat, dan ideal untuk udara tropis." },
+            { id: 6, name: "Oversized Denim Worker Jacket Blue", price: 345000, category: "outerwear", img: "https://images.unsplash.com/photo-1555583743-991174c11425?w=600&auto=format&fit=crop&q=60", rating: 4.8, reviews: 93, stock: 15, desc: "Jaket denim kasual berpotongan oversized dengan aksen saku kargo fungsional bergaya worker jacket Jepang. Menggunakan bahan denim tebal pre-washed kualitas tinggi yang kokoh namun tetap nyaman digerakkan." },
+            { id: 7, name: "Premium Soft-Knit Knitwear Sweater", price: 225000, category: "atasan", img: "https://plus.unsplash.com/premium_photo-1733701621157-0a5b7d168a7f?w=600&auto=format&fit=crop&q=60", rating: 4.7, reviews: 76, stock: 22, desc: "Sweater rajut bertekstur eksklusif dari benang premium soft-acrylic. Kerah manset yang nyaman, elastis, tidak gatal di kulit, memberikan impresi layer tampilan aesthetic minimalis instan." },
+            { id: 8, name: "Minimalist Corduroy Overshirt Jacket", price: 189000, category: "atasan", img: "https://images.unsplash.com/photo-1647002587202-483b996d9555?w=600&auto=format&fit=crop&q=60", rating: 4.8, reviews: 105, stock: 31, desc: "Kemeja overshirt taktis bermaterial kain korduroi serat mikro bertekstur gari-garis halus yang estetik. Memberi aksen fashion vintage kontemporer yang kuat, sangat keren dijadikan sebagai luaran luar kaos polos Anda." }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('ikhwanstore_cart')) || [];
+        let selectedSizeCode = "S"; 
+        let currentModalProduct = null;
+
+        function showPage(pageId) {
+            if (pageId === 'home') {
+                document.getElementById('home-page').style.display = 'block';
+                document.getElementById('checkout-page').style.display = 'none';
+            } else if (pageId === 'checkout') {
+                document.getElementById('home-page').style.display = 'none';
+                document.getElementById('checkout-page').style.display = 'block';
+                renderCartTable();
+            }
+        }
+
+        function generateStarRatingHTML(rating, reviews) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            for (let i = 0; i < 5; i++) {
+                stars += (i < fullStars) ? '★' : '☆';
+            }
+            return `${stars} <span class="rating-count">(${reviews} Ulasan)</span>`;
+        }
+
+        function renderProducts(productsToDisplay) {
+            const productListContainer = document.getElementById('product-list');
+            productListContainer.innerHTML = '';
+
+            if (productsToDisplay.length === 0) {
+                productListContainer.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">Pakaian belum tersedia.</p>`;
+                return;
+            }
+
+            productsToDisplay.forEach(product => {
+                const ratingHTML = generateStarRatingHTML(product.rating, product.reviews);
+                productListContainer.innerHTML += `
+                    <div class="product-card">
+                        <img src="${product.img}" alt="${product.name}" onclick="openModal(${product.id})">
+                        <div>
+                            <h3>${product.name}</h3>
+                            <div class="rating-box">${ratingHTML}</div>
+                            <p class="price">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <button onclick="openModal(${product.id})" class="btn">Lihat Detail / Beli</button>
+                    </div>
+                `;
+            });
+        }
+
+        function filterAndSearchProducts() {
+            const searchQuery = document.getElementById('search-input').value.toLowerCase();
+            const selectedCategory = document.getElementById('category-filter').value;
+
+            const filtered = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchQuery);
+                const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+                return matchesSearch && matchesCategory;
+            });
+
+            renderProducts(filtered);
+        }
+
+        document.getElementById('search-input').addEventListener('input', filterAndSearchProducts);
+        document.getElementById('category-filter').addEventListener('change', filterAndSearchProducts);
+
+        function updateCartBadge() {
+            const countElement = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countElement.innerText = totalItems;
+        }
+
+        function addToCart(productId, quantity, size) {
+            const targetProduct = products.find(p => p.id === productId);
+            const cartItemId = `${productId}-${size}`;
+            const existingItem = cart.find(item => item.cartItemId === cartItemId);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ 
+                    cartItemId: cartItemId,
+                    id: targetProduct.id,
+                    name: targetProduct.name,
+                    price: targetProduct.price,
+                    size: size,
+                    quantity: quantity 
+                });
+            }
+
+            saveCart();
+            updateCartBadge();
+            triggerSuccessAnimation(`Berhasil menambahkan <strong>${quantity}x ${targetProduct.name} (Size ${size})</strong>.`);
+        }
+
+        function saveCart() {
+            localStorage.setItem('ikhwanstore_cart', JSON.stringify(cart));
+        }
+
+        function renderCartTable() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceElement = document.getElementById('cart-total-price');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="padding: 1rem 0;">Keranjang belanja kosong.</p>';
+                totalPriceElement.innerText = 'Rp 0';
+                return;
+            }
+
+            let totalCost = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalCost += itemTotal;
+
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p class="item-meta">Ukuran: <strong>${item.size}</strong> | Harga: Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <div class="cart-item-controls">
+                            <input type="number" min="1" value="${item.quantity}" onchange="changeQuantity('${item.cartItemId}', this.value)">
+                            <button onclick="removeFromCart('${item.cartItemId}')" class="btn btn-danger" style="padding: 0.3rem 0.6rem; font-size:0.8rem; margin-left:0.5rem;">Hapus</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalPriceElement.innerText = `Rp ${totalCost.toLocaleString('id-ID')}`;
+        }
+
+        function changeQuantity(cartItemId, newQty) {
+            const item = cart.find(i => i.cartItemId === cartItemId);
+            if (item) {
+                item.quantity = parseInt(newQty) || 1;
+                saveCart();
+                updateCartBadge();
+                renderCartTable();
+            }
+        }
+
+        function removeFromCart(cartItemId) {
+            cart = cart.filter(item => item.cartItemId !== cartItemId);
+            saveCart();
+            updateCartBadge();
+            renderCartTable();
+        }
+
+        function selectSize(buttonElement) {
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            sizeButtons.forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+            selectedSizeCode = buttonElement.innerText;
+        }
+
+        function adjustModalQty(amount) {
+            const qtyInput = document.getElementById('modal-qty');
+            let currentVal = parseInt(qtyInput.value) || 1;
+            currentVal += amount;
+            if (currentVal < 1) currentVal = 1;
+            
+            if (currentModalProduct && currentVal > currentModalProduct.stock) {
+                currentVal = currentModalProduct.stock;
+                alert(`Stok terbatas sisa ${currentModalProduct.stock} pcs.`);
+            }
+            qtyInput.value = currentVal;
+        }
+
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            currentModalProduct = product;
+            
+            document.getElementById('modal-img').src = product.img;
+            document.getElementById('modal-name').innerText = product.name;
+            document.getElementById('modal-rating').innerHTML = generateStarRatingHTML(product.rating, product.reviews);
+            document.getElementById('modal-price').innerText = `Rp ${product.price.toLocaleString('id-ID')}`;
+            document.getElementById('modal-stock').innerText = product.stock;
+            document.getElementById('modal-desc').innerText = product.desc;
+            document.getElementById('modal-qty').value = "1";
+
+            const firstSizeBtn = document.querySelector('.size-btn');
+            selectedSizeCode = "S";
+            if (firstSizeBtn) {
+                const sizeButtons = document.querySelectorAll('.size-btn');
+                sizeButtons.forEach(btn => btn.classList.remove('active'));
+                firstSizeBtn.classList.add('active');
+            }
+
+            const btn = document.getElementById('modal-add-btn');
+            btn.onclick = function() {
+                const qtyToBuy = parseInt(document.getElementById('modal-qty').value) || 1;
+                addToCart(product.id, qtyToBuy, selectedSizeCode);
+                closeModal();
+            };
+
+            document.getElementById('product-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+
+        function triggerSuccessAnimation(htmlMessage, isCheckoutSuccess = false) {
+            const successModal = document.getElementById('success-modal');
+            const titleElement = document.getElementById('success-title');
+            const msgElement = document.getElementById('success-modal-msg');
+            const actionBtn = document.getElementById('success-action-btn');
+
+            if (isCheckoutSuccess) {
+                titleElement.innerText = "Pembayaran Berhasil!";
+                actionBtn.setAttribute("onclick", "closeSuccessModalRedirect()");
+            } else {
+                titleElement.innerText = "Berhasil Ditambahkan!";
+                actionBtn.setAttribute("onclick", "closeSuccessModalOnly()");
+            }
+
+            msgElement.innerHTML = htmlMessage;
+            successModal.style.display = 'flex';
+        }
+
+        function closeSuccessModalOnly() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+
+        function closeSuccessModalRedirect() {
+            document.getElementById('success-modal').style.display = 'none';
+            showPage('home');
+        }
+
+        window.onclick = function(event) {
+            const productModal = document.getElementById('product-modal');
+            const successModal = document.getElementById('success-modal');
+            if (event.target === productModal) closeModal();
+            if (event.target === successModal) successModal.style.display = 'none';
+        }
+
+        function processCheckout(event) {
+            event.preventDefault();
+            if (cart.length === 0) {
+                alert('Keranjang belanja kosong.');
+                return;
+            }
+
+            const name = document.getElementById('buyer-name').value;
+            const gateway = document.getElementById('payment-method').value;
+            let displayGateway = gateway.toUpperCase();
+
+            if (gateway === 'cod') displayGateway = 'COD';
+
+            let itemSummaryHTML = "<ul style='text-align:left; margin: 1rem 0; padding-left: 1.2rem;'>";
+            cart.forEach(item => {
+                itemSummaryHTML += `<li>${item.name} (Size: <strong>${item.size}</strong>) x${item.quantity}</li>`;
+            });
+            itemSummaryHTML += "</ul>";
+
+            const outputMessage = `Pesanan atas nama <strong>${name}</strong> sukses diproses menggunakan <strong>${displayGateway}</strong>.<br>${itemSummaryHTML}`;
+            triggerSuccessAnimation(outputMessage, true);
+            
+            cart = [];
+            saveCart();
+            updateCartBadge();
+            document.getElementById('checkout-form').reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartBadge();
+        });
+    </script>
+</body>
+</html>
